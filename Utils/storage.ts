@@ -16,7 +16,7 @@ export const getFromStorage = <T>(key: EStoreKey): T | null => {
     }
 }
 
-export const saveToStorage = (key: EStoreKey, data: any): Boolean => {
+export const saveToStorage = (key: EStoreKey, data: any): boolean => {
     const oldData = getFromStorage<any>(key) ?? {};
     if (typeof oldData === "object") {
         try {

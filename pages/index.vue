@@ -1,22 +1,17 @@
-<template>
-  <div class="main-container">
-    <Dashboard v-if="userLogged" />
-    <Login v-else />
-  </div>
-</template>
-
 <script>
+import { useRouter } from 'vue-router'
+import { getFromStorage, EStoreKey } from '@/Utils/storage'
+
+const router = useRouter()
 export default {
-  name: 'IndexPage',
-  data: () => {
-    return {
-      userLogged: true
+  mounted: () => {
+    const userData = getFromStorage(EStoreKey.USER)
+    if (userData && userData.logged) {
+      router.replace({ path: '/item-lists' })
+    } else {
+      router.replace({ path: '/item-lists' }) // '/login'
     }
   },
-  mounted: () => {
-    
-  },
-  methods: {},
 }
 </script>
 
